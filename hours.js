@@ -29,7 +29,7 @@ angular.module('hours', ['angularMoment'])
     return {
       add: function(day, hour, text) {
         if(!days[day]) { days[day] = []; }
-        days[day][hour] = text;
+        days[day][hour] = {text: text};
         save();
       },
       get: function(day) {
@@ -44,15 +44,14 @@ angular.module('hours', ['angularMoment'])
         var rows = [];
         for(var d in days) {
           for(var i = 0; i < 48; i++) {
-            if(days[d][i-1] && days[d][i-1] == days[d][i]) { rows[rows.length-1].end = $filter('timeOffset')(i+1); continue; }
-            if(days[d][i]) {
-              rows.push({
-                date: d,
-                start: $filter('timeOffset')(i),
-                end: $filter('timeOffset')(i+1),
-                text: days[d][i]
-              });
-            }
+            if(!days[d][i]) { continue; }
+            if(days[d][i-1] && days[d][i-1].text == days[d][i].text) { rows[rows.length-1].end = $filter('timeOffset')(i+1); continue; }
+            rows.push({
+              date: d,
+              start: $filter('timeOffset')(i),
+              end: $filter('timeOffset')(i+1),
+              text: days[d][i].text
+            });
           }
         }
 
@@ -116,7 +115,7 @@ angular.module('hours', ['angularMoment'])
           <div class="scrollarea" style="overflow-y: scroll; height: 588px; border-top: 1px solid gray; border-bottom: 1px solid gray;">
             <div class="timecell" ng-repeat="event in hours track by $index" offset="{{$index}}" ng-class="{event: event !== undefined}">
               <div class="label">{{$index | timeOffset}}</div>
-              <div class="event">{{hours[$index]}}</div>
+              <div class="event">{{hours[$index].text}}</div>
             </div>
           </div>
         </div>
@@ -135,7 +134,7 @@ angular.module('hours', ['angularMoment'])
           $scope.hours = Array(48);
           for(var i = 0; i < 48; i++) {
             if(!calendar || !calendar[i]) { continue; }
-            if(calendar[i-1] && calendar[i] == calendar[i-1]) { $scope.hours[i] = ''; }
+            if(calendar[i-1] && calendar[i].text == calendar[i-1].text) { $scope.hours[i] = ''; }
             else {$scope.hours[i] = calendar[i]; }
           }
         }
