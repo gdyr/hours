@@ -129,7 +129,6 @@ angular.module('hours', ['angularMoment'])
         $scope.offset = $element.attr('offset');
 
         function refresh() {
-          console.log('refresh!');
           var calendar = Calendar.get(moment($scope.day).add($scope.offset, 'days').format('YYYY-MM-DD'));
           $scope.hours = Array(48);
           for(var i = 0; i < 48; i++) {
