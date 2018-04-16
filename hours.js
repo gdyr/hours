@@ -29,7 +29,7 @@ angular.module('hours', ['angularMoment'])
     return {
       add: function(day, hour, text) {
         if(!days[day]) { days[day] = []; }
-        days[day][hour] = {text: text};
+        days[day][hour] = (text === null ? null : {text: text});
         save();
       },
       get: function(day) {
