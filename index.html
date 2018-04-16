@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Hours Tracker</title>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/1.2.0/angular-moment.min.js"></script>
+
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+  <link rel="stylesheet" href="hours.css" />
+  <script src="hours.js"></script>
+
+</head>
+<body ng-app="hours">
+
+  <!-- Date arrows -->
+  <div dref="-1" style="left: 30px;" class="dref">
+    <li class="ion-chevron-left" data-pack="default" data-tags="arrow, left"></li>
+  </div>
+  <div dref="1" style="right: 30px;" class="dref">
+    <li class="ion-chevron-right" data-pack="default" data-tags="arrow, right"></li>
+  </div>
+
+  <div class="container">
+
+    <day-editor offset="-3" class="pday3"></day-editor>
+    <day-editor offset="-2" class="pday2"></day-editor>
+    <day-editor offset="-1" class="pday1"></day-editor>
+    <day-editor offset="0"  class="today"></day-editor>
+    <day-editor offset="1"  class="nday1"></day-editor>
+    <day-editor offset="2"  class="nday2"></day-editor>
+    <day-editor offset="3"  class="nday3"></day-editor>
+
+    <br />
+    <br />
+    <br />
+    <button class="gray" ng-click="export()">Export Data</button>
+  
+  </div>
+
+  
+
+  <div id="editModal" class="modal" controller="ModalController">
+
+    <h3>{{start_time | timeOffset }} - {{end_time | timeOffset}} on {{edit_day | dateFormat}}</h3>
+
+    <textarea ng-model="entry.text" style="
+      margin: 0px;
+      width: 434px;
+      height: 180px;
+      resize: none;">
+    </textarea>
+    <br />
+    <br />
+    <button style="float: right;" ng-click="save()" rel="modal:close">Save</button>
+    <br />
+    <br />
+
+  </div>
+
+</body>
+</html>

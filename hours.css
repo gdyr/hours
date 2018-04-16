@@ -1,0 +1,113 @@
+html,body {
+  user-select: none;
+  margin: 0px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  height: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+.dref {
+  position: absolute;
+  top: 30px;
+}
+
+.container {
+  text-align: center;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.timecell {
+  height: 26px;
+  border: 1px solid gray;
+  margin-top: -1px;
+  cursor: pointer;
+  padding: 2px;
+  text-align: left;
+}
+
+.timecell.highlight.highlight {
+  background: rgb(220, 235, 255);
+}
+
+.timecell.event {
+  background: rgb(210, 255, 220);
+}
+
+.timecell .label {
+  float: right;
+  font-size: 70%;
+  color: rgba(0,0,0, 0.5);
+}
+
+.timecell .event {
+  float: left;
+  font-size: 90%;
+}
+
+button {
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+  background: black;
+  color: white;
+  border: 0px;
+  font-size: 100%;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.gray {
+  background: gray;
+}
+
+button.gray:hover {
+  background: black;
+}
+
+/* Autosizing */
+@media screen and (max-width: 600px) {
+  .pday3, .pday2, .pday1, .nday1, .nday2, .nday3 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .pday3, .pday2, .pday1, .nday2, .nday3 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .pday3, .pday2, .nday2, .nday3 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .pday3, .pday2, .nday3 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .pday3, .nday3 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .pday3 {
+    display: none;
+  }
+}
